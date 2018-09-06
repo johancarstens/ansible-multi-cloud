@@ -45,7 +45,7 @@
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
-        name: "Windows Server 2016 Datacenter"
+        sku: 2016-Datacenter
         version: latest
       name: "{{ vm_name }}"
       resource_group: "{{ resource_group }}"
