@@ -45,12 +45,12 @@
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
-        sku: 2016-Datacenter
+        name: "Windows Server 2016 Datacenter"
         version: latest
       name: "{{ vm_name }}"
       resource_group: "{{ resource_group }}"
       state: present
-      vm_size: Standard_B1s
+      vm_size: Standard_B2s
       storage_account_name: "{{ storage_account_name }}"
       virtual_network_name: "{{ virtual_network_name }}"
       subnet_name: "{{ virtual_network_subnet_name }}"
