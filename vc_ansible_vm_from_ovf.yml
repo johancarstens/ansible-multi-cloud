@@ -1,0 +1,30 @@
+allow_duplicates: yes
+cluster:
+datacenter:
+datastore:
+deployment_option:
+disk_provisioning:
+  # flat
+  # eagerZeroedThick
+  # monolithicSparse
+  # twoGbMaxExtentSparse
+  # twoGbMaxExtentFlat
+  # thin
+  # sparse
+  # thick
+  # seSparse
+  #  monolithicFlat
+fail_on_spec_warnings
+  #yes no
+folder:
+hostname:
+name:
+networks:
+
+- vmware_deploy_ovf:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    ovf: /path/to/ubuntu-16.04-amd64.ovf
+    wait_for_ip_address: true
+  delegate_to: localhost

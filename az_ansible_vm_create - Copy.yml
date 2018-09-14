@@ -41,16 +41,16 @@
     azure_rm_virtualmachine:
       admin_username: "{{ vm_user }}"
       admin_password: "{{ vm_password }}"
-      os_type: "{{ os_type }}"
+      os_type: Windows
       image:
-        offer: "{{ image_offer }}"
-        publisher: "{{ image_publisher }}"
-        sku: "{{ image_sku }}"
+        offer: WindowsServer
+        publisher: MicrosoftWindowsServer
+        sku: 2016-Datacenter
         version: latest
       name: "{{ vm_name }}"
       resource_group: "{{ resource_group }}"
       state: present
-      vm_size: "{{ vm_size }}"
+      vm_size: Standard_DS1_v2
       storage_account_name: "{{ storage_account_name }}"
       virtual_network_name: "{{ virtual_network_name }}"
       subnet_name: "{{ virtual_network_subnet_name }}"
