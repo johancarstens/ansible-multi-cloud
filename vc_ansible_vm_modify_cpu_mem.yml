@@ -24,5 +24,5 @@
             hotadd_cpu: True
             hotremove_cpu: True
             hotadd_memory: True
-          delegate_to: localhost
+        delegate_to: localhost
 
