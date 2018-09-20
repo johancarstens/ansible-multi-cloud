@@ -1,0 +1,57 @@
+# Description
+# ===========
+# This playbook creates an Azure Windows VM with public IP. It also configures the machine to be accessible via Ansible using WinRM.
+# This playbook originally comes from @jborean93 (https://github.com/jborean93/ansible-win-demos)
+# Duplicated from: https://raw.githubusercontent.com/Azure-Samples/ansible-playbooks/master/vm_create_windows.yml
+
+- hosts: localhost
+- name: provision new azure host
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: create Azure resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ az_location }}"
+      state: present
+
+  - name: create Azure virtual network in resource group
+    azure_rm_virtualnetwork:
+      name: "{{ virtual_network_name }}"
+      resource_group: "{{ resource_group }}"
+      address_prefixes_cidr: "{{ virtual_network_cidr }}" # Address space
+      state: present
+  
+  - name: create Azure subnet in virtualnetwork
+    azure_rm_subnet:
+      name: "{{ virtual_network_subnet_name }}"
+      state: present
+      virtual_network_name: "{{ virtual_network_name }}"
+      resource_group: "{{ resource_group }}"
+      address_prefix_cidr: "{{ virtual_network_subnet_cidr }}" # Address space
+
+  - name: create Azure storage account
+    azure_rm_storageaccount:
+      name: "{{ storage_account_name }}"
+      resource_group: "{{ resource_group }}"
+      account_type: "{{ storage_account_type }}"
+
+  - name: provision new Azure virtual host
+    azure_rm_virtualmachine:
+      admin_username: "{{ vm_user }}"
+      admin_password: "{{ vm_password }}"
+      os_type: Windows
+      image:
+        offer: WindowsServer
+        publisher: MicrosoftWindowsServer
+        sku: 2016-Datacenter
+        version: latest
+      name: "{{ vm_name }}"
+      resource_group: "{{ resource_group }}"
+      state: present
+      vm_size: Standard_DS1_v2
+      storage_account_name: "{{ storage_account_name }}"
+      virtual_network_name: "{{ virtual_network_name }}"
+      subnet_name: "{{ virtual_network_subnet_name }}"
+

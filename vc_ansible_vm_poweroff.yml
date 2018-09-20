@@ -1,12 +1,16 @@
 #source: https://docs.ansible.com/ansible/2.6/modules/vmware_guest_powerstate_module.html
-- name: Set the state of a virtual machine to poweroff
-  vmware_guest_powerstate:
-    hostname: '{{ vcenter_hostname }}'
-    username: '{{ vcenter_username }}'
-    password: '{{ vcenter_password }}'
-    validate_certs: no
-    folder: 
-    name: '{{ vm_name }}'
-    state: powered-off
-  delegate_to: localhost
-  register: deploy
+- name:  VC Poweroff VM
+  hosts: all
+  gather_facts: false
+  tasks:
+      - name: Poweroff VM
+        vmware_guest_powerstate:
+          hostname: '{{ vcenter_hostname }}'
+          username: '{{ vcenter_username }}'
+          password: '{{ vcenter_password }}'
+          validate_certs: no
+          folder: 
+          name: '{{ vm_name }}'
+          state: powered-off
+        delegate_to: localhost
+        register: deploy
