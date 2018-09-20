@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
       - name: Modify Memory and CPU
-        vmware_guest_powerstate:
+        #vmware_guest_powerstate:
           #hostname: '{{ vcenter_hostname }}'
           #username: '{{ vcenter_username }}'
           #password: '{{ vcenter_password }}'
