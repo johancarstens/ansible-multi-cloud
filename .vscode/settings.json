@@ -1,3 +1,11 @@
 {
-    "ansible.cloudShellConfirmed": true
+    "ansible.cloudShellConfirmed": true,
+    "ansible.fileCopyConfig": [
+        {
+            "server": "196.5.80.76",
+            "sourcePath": "c:\\Users\\jcarsten\\Documents\\GitHub\\ansible-multi-cloud/",
+            "targetPath": "ansible-multi-cloud/",
+            "copyOnSave": true
+        }
+    ]
 }

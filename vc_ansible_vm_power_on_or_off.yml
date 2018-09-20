@@ -1,9 +1,10 @@
 #source: https://docs.ansible.com/ansible/2.6/modules/vmware_guest_powerstate_module.html
-- name:  VC Poweroff VM
+#Playbook to be launched from AWX or Ansible Tower.
+- name:  VC PowerOn or PowerOff VM
   hosts: all
   gather_facts: false
   tasks:
-      - name: Poweroff VM
+      - name: PowerOn or PowerOff VM
         vmware_guest_powerstate:
           hostname: '{{ vcenter_hostname }}'
           username: '{{ vcenter_username }}'
@@ -11,6 +12,6 @@
           validate_certs: no
           folder: 
           name: '{{ vm_name }}'
-          state: powered-off
+          state: '{{ power_state }}' #powered-off or powered-on
         delegate_to: localhost
         register: deploy
