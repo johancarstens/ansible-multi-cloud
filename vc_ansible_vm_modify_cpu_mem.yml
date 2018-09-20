@@ -7,6 +7,7 @@
     - name: Modify Memory and CPU
       vmware_guest:
         name: '{{ vm_name }}'
+        state: present
         hardware:
           memory_mb: "{{ memory }}"
           num_cpus: "{{ cpus }}"
@@ -23,4 +24,4 @@
           hotremove_cpu: True
           hotadd_memory: True
         delegate_to: localhost
-        register: deploy
+
