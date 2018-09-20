@@ -9,7 +9,7 @@ disk_provisioning:
   # monolithicSparse
   # twoGbMaxExtentSparse
   # twoGbMaxExtentFlat
-  # thin
+  thin
   # sparse
   # thick
   # seSparse
