@@ -1,0 +1,29 @@
+#source: https://docs.ansible.com/ansible/2.6/modules/vmware_guest_powerstate_module.html
+#Playbook to be launched from AWX or Ansible Tower.
+- name:  VC Add New Disk
+  hosts: all
+  gather_facts: false
+  tasks:
+      - name: Add New Disk
+        vmware_guest:
+          name: '{{ vm_name }}'
+          state: present
+          validate_certs: False
+          disk:
+          - size_gb: '{{ disk_gb_size }}'
+            type: '{{ disk_type }}'   #thin or eagerzeroedthick
+            datastore: '{{ datastore }}'
+            # A list of disks to add.
+            # This parameter is case sensitive.
+            # Resizing disks is not supported.
+            # Removing existing disks of the virtual machine is not supported.
+            # Valid attributes are:
+            # - size_[tb,gb,mb,kb] (integer): Disk storage size in specified unit.
+            # - type (string): Valid values are:
+            #                 - thin thin disk
+            #                 - eagerzeroedthick eagerzeroedthick disk, added in version 2.5
+            # Default: None thick disk, no eagerzero.
+            # - datastore (string): Datastore to use for the disk. If autoselect_datastore is enabled, filter datastore selection.
+            # - autoselect_datastore (bool): select the less used datastore. Specify only if datastore is not specified.
+        delegate_to: localhost
+
